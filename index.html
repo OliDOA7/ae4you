@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AE4You Study Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom scrollbar for webkit browsers */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    body {
+      font-family: 'Inter', sans-serif; /* A clean, modern font often used with Tailwind */
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.6.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-100">
+  <div id="root"></div>
+  <script>
+    // Polyfill for process.env.API_KEY for browser environment
+    // In a real deployment, this would be set via build-time environment variables or a secure configuration service.
+    // For this exercise, we'll simulate it. If it's not set, the app will show an error.
+    // A real app would NEVER expose API keys this way in client-side code for production.
+    // This is purely for the execution environment of this generated code.
+    if (!window.process) {
+      window.process = {
+        env: {
+          // DEVELOPER: Replace with a valid API key ONLY for local testing if not using a .env file and bundler.
+          // IMPORTANT: In a real build, this API_KEY should be populated by the build process or a secure mechanism,
+          // not hardcoded here or in committed code.
+          // For the purpose of this sandbox, it might be set externally or you might need to set it here for testing.
+          // Example: API_KEY: "YOUR_GEMINI_API_KEY"
+          API_KEY: undefined // This will cause an error if not set by the environment.
+        }
+      };
+    } else if (!window.process.env) {
+      window.process.env = { API_KEY: undefined };
+    } else if (window.process.env.API_KEY === undefined) {
+      window.process.env.API_KEY = undefined;
+    }
+    // Attempt to load API_KEY from a global variable if available (e.g. set by the platform)
+    if (typeof API_KEY !== 'undefined' && window.process.env.API_KEY === undefined) {
+      window.process.env.API_KEY = API_KEY;
+    }
+  </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
